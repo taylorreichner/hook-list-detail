@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import CharacterList from '../components/characterList';
-import getArnold from '../services/heyArnoldApi';
+import { getArnold } from '../services/heyArnoldApi';
 
 const HeyArnold = () => {
     const [loading, setLoading] = useState(true);
@@ -18,8 +18,11 @@ const HeyArnold = () => {
         <>
         <div>
             <h1>YOOOOOO</h1>
+           
             <CharacterList characters={characters}/>
+           
         </div>
+
 
         </>
     )

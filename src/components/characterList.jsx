@@ -6,8 +6,7 @@ const CharacterList = ({characters}) => {
     
     const characterItems = characters.map(character => (
         <li key={character._id}>
-            <img src={character.image} />
-            <div>{character.name}</div>
+          <Character {...character}/>
         </li>
     ))
 
