@@ -1,24 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import CharacterList from '../components/characterList';
-import { getArnold } from '../services/heyArnoldApi';
+import { useCharacters } from '../hooks/heyArnoldHook';
+
 
 const HeyArnold = () => {
-    const [loading, setLoading] = useState(true);
-    const [characters, setCharacters] = useState([]);
-
-    useEffect(() => {
-        getArnold()
-            .then(setCharacters)
-            .finally(() => setLoading(false));
-    }, []);
+   const {loading, characters, page, setPage} = useCharacters()
     
     if (loading) return <h1>Loading...</h1>
 
     return (
         <>
         <div>
-            <h1>YOOOOOO</h1>
-           
+        <button onClick={() => {
+        if(page === 1) return;
+        else setPage((prevPage) => prevPage - 1);
+      }}>Prev</button>
+      <button onClick={() => {
+        if(page === 50) return;
+        setPage((prevPage) => prevPage + 1);
+      }}>Next</button>
+
+            <h2>YOOOOOO</h2>
+
             <CharacterList characters={characters}/>
            
         </div>

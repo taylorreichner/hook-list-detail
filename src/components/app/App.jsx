@@ -4,14 +4,20 @@ import {BrowserRouter as Router,
 Switch,
 Route,
 } from 'react-router-dom';
-import DetailPage from '../Details';
+import DetailArnold from '../../containers/DetailFn';
+
 
 export default function App() {
   return ( 
   <Router>
     <Switch>
-      <Route exact path='/' component={HeyArnold}/>
-      <Route exact path='/:id' component={DetailPage} />
+      <Route exact path='/' render={(routerProps) => <HeyArnold {...routerProps}/>} />
+      <Route
+            path="/:id"
+            exact
+            render={(routerProps) => <DetailArnold {...routerProps} />}
+          />
+      
     </Switch>
   </Router>
   
