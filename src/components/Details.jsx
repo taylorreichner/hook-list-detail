@@ -1,31 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import Character from '../components/character'
-import { getArnoldById } from '../services/heyArnoldApi';
+import React from 'react';
+import Character from '../components/character';
+import { useCharacter } from '../hooks/detailHook';
 
 const DetailPage = ({ match }) => {
-	const [loading, setLoading] = useState(false);
-	const [characterDetail, setCharacter] = useState({});
 
-	useEffect(() => {
-		getArnoldById(match.params.id)
-			.then(result => {
-				setCharacter(result);
-				setLoading(false);
-			})
+	const [loading, character] = useCharacter(match.params.id);
 
-	}, []);
-		console.log('HELLOO', characterDetail)
 	return (
-        <div>
+	<div>
 		<h1>Detail page</h1>
 		{loading
 			? <p>Loading...</p>
-			: <Character 
-				name={characterDetail.name}
-				image={characterDetail.image}
+			: <Character {...character}
 				/>
 		}
 	</div>
-    )}
+)};
 
-    export default DetailPage;
+export default DetailPage;

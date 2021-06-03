@@ -1,14 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import Character from  './character'
+import { useArnoldHook } from '../hooks/heyArnoldHook';
 
-const CharacterList = ({characters}) => {
+const CharacterList = () => {
     
+    const {characters, loading} = useArnoldHook();
+
     const characterItems = characters.map(character => (
         <li key={character._id}>
           <Character {...character}/>
         </li>
     ))
+
+    if (loading) return <h1>LOADING!!!</h1>
 
    return (
 
@@ -17,14 +22,5 @@ const CharacterList = ({characters}) => {
    </ul>
    )};
 
-CharacterList.propTypes = {
-    characters: PropTypes.arrayOf(
-        PropTypes.shape({
-            _id: PropTypes.string.isRequired,
-            name: PropTypes.string.isRequired,
-            image: PropTypes.string.isRequired
-        })
-    ).isRequired
-}
 
 export default CharacterList;

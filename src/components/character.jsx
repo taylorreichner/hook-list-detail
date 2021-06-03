@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom'; 
 
 const Character = ({name, image, _id}) => { 
+    
+    
     return (
     <figure>
     <Link to={`/${_id}`}>    
@@ -15,7 +17,7 @@ const Character = ({name, image, _id}) => {
 )}
 
 Character.propTypes = {
-    id: PropTypes.string.isRequired,
+    _id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     image: PropTypes.string.isRequired
 }
